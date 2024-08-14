@@ -24,7 +24,7 @@ wss.on("connection", (ws) => {
 
       //sending offer to receiver socket
       receiverSocket?.send(
-        JSON.stringify({ type: "offer", offer: message.offer })
+        JSON.stringify({ type: "create-offer", sdp:message.sdp })
       );
     } else if (message.type === "create-answer") {
       //checking if answer is sended by receiver socket only, if not return
@@ -34,7 +34,7 @@ wss.on("connection", (ws) => {
 
       //sending answer to sender socket
       senderSocket?.send(
-        JSON.stringify({ type: "answer", offer: message.answer })
+        JSON.stringify({ type: "create-answer", sdp:message.sdp })
       );
     }
     //if message type is ice-candidate
